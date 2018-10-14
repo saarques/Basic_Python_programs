@@ -3,10 +3,6 @@
 #i am going to use two players in it, so that they can compete and winnere will be decided by their scores.
 #If a player answers incorrect or don't answer, then the othe player will be rewarded half the score.
 
-#Issues remaining-(1)upper() not working with None, i.e, if player doesn't answer, then default input would be None, but upper don't
-#work on None, so player will need to answer in capital letters everytime. (2)If a player doesn't answer, then, we need to enter a "enter"
-#to make program move forwards, this needs to be resolved, otherwise the other player will have more time on same problem, and it may
-#increase his chances of getting correct. ALTERNATIVE SOLUTION(2): doesn't matter if one player was wrong, other player must get different word. 
 
 #importing random module
 import random
@@ -15,11 +11,13 @@ from threading import Timer
 
 def input_correct():
 	timeout=10
-	t=Timer(timeout, print, ['Sorry, times up'])
+	t=Timer(timeout, print, ['Sorry, times up']) #put a default value other than None, if no input is given, so that upper() can work
 	t.start()
 	prompt="You got 10 seconds to answer \n"
 	answer=input(prompt)
 	t.cancel()
+	if answer==None:
+		answer=-9999
 	return answer
 
 #function to choose random word
@@ -73,7 +71,7 @@ def start_game():
 			print(p1, "Your Turn.\nWhat's in your mind? ") 
 			answer = input_correct()
 			# checking answer is equal to random_word or not 
-			if answer == random_word:
+			if answer.upper() == random_word:
 				# incremented by 1 
 				p1s += 1
 				print("Correct")
@@ -84,7 +82,7 @@ def start_game():
 				# player 2 turn
 				print(p2, "Your Turn.\nWhat's in your mind? ") 
 				answer = input_correct()
-				if answer == random_word:
+				if answer.upper() == random_word:
 					p2s += 1
 					print("Correct") 
 				else: 
@@ -103,7 +101,7 @@ def start_game():
 			# player2 turn 
 			print(p2, "Your Turn.\nWhat's in your mind? ") 
 			answer = input_correct()
-			if answer == random_word: 
+			if answer.upper() == random_word: 
 				p2s += 1
 				print("Correct") 
 				turn += 1
@@ -112,7 +110,7 @@ def start_game():
 				p1s += 0.5
 				print(p1, "Your Turn.\nWhat's in your mind? ") 
 				answer = input_correct()
-				if answer == random_word: 
+				if answer.upper() == random_word: 
 					p1s += 1
 					
 					print("Correct")
