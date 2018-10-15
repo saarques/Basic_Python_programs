@@ -20,6 +20,7 @@ def input_correct():
     prompt="You got 10 seconds to answer \n"
     answer=input(prompt)
     t.cancel()
+    print("Press enter to continue")
     if answer==None:
         answer=-9999
     return answer
@@ -47,8 +48,8 @@ def shuffle(my_word):
     return jumble_word 
 
 def result(p1, p2, p1s, p2s):
-    print(p1, " your score is: ", p1s)
-    print(p2, " your score is: ", p2s)
+    print(p1.upper(), " your score is: ", p1s)
+    print(p2.upper(), " your score is: ", p2s)
     print("Thank you both for playing the game")
     
 def start_game():
