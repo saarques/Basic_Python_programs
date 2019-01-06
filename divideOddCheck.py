@@ -19,5 +19,6 @@ def sequenceThree(c):
 # print("The value at number 7 in the sequence is: {}".format(sequenceThree(7-1)))
 
 for i in range(a):
-	print(sequenceThree(i), end = ', ')
+	d = sequenceThree(i)
+	print(d, d%3, end = ', ')
 print(". . . . .")
